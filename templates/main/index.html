@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href={% static "css/style.css" %}>
 </head>
 <body>
     <header></header>
@@ -11,22 +12,19 @@
         <nav class="main-nav">
             <ul class="site-navigation">
                 <li class="site-navigation-item">
-                    <a href="index.html">Главная</a>
+                    <a href="/main">Главная</a>
                 </li>
                 <li class="site-navigation-item">
-                    <a href="main.html">Описание профессии аналитика</a>
+                    <a href="/demand">Востребованность</a>
                 </li>
                 <li class="site-navigation-item">
-                    <a href="demand.html">Востребованность</a>
+                    <a href="/geography">География</a>
                 </li>
                 <li class="site-navigation-item">
-                    <a href="geography.html">География</a>
+                    <a href="/skills">Навыки</a>
                 </li>
                 <li class="site-navigation-item">
-                    <a href="skills.html">Навыки</a>
-                </li>
-                <li class="site-navigation-item">
-                    <a href="last_vacancies.html">Последние вакансии</a>
+                    <a href="/last_vacancies">Последние вакансии</a>
                 </li>
             </ul>
         </nav>

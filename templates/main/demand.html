@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href={% static "css/style.css" %}>
 </head>
 <body>
     <header></header>
@@ -10,31 +12,62 @@
         <nav class="main-nav">
             <ul class="site-navigation">
                 <li class="site-navigation-item">
-                    <a href="index.html">Главная</a>
+                    <a href="/main">Главная</a>
                 </li>
                 <li class="site-navigation-item">
-                    <a href="main.html">Описание профессии аналитика</a>
+                    <a href="/demand">Востребованность</a>
                 </li>
                 <li class="site-navigation-item">
-                    <a href="demand.html">Востребованность</a>
+                    <a href="/geography">География</a>
                 </li>
                 <li class="site-navigation-item">
-                    <a href="geography.html">География</a>
+                    <a href="/skills">Навыки</a>
                 </li>
                 <li class="site-navigation-item">
-                    <a href="skills.html">Навыки</a>
-                </li>
-                <li class="site-navigation-item">
-                    <a href="last_vacancies.html">Последние вакансии</a>
+                    <a href="/last_vacancies">Последние вакансии</a>
                 </li>
             </ul>
         </nav>
-        <h2>Динамика уровня зарплат по годам для профессии "Аналитик"</h2>
-        <p><img src="resources/mean_salary_by_years.png"></p>
-        <figcaption>График уровня зарплат</figcaption>
-        <h2>Динамика количества вакансий по годам для профессии "Аналитик"</h2>
-        <p><img src="resources/vacancies_count_by_years.png"></p>
-        <figcaption>График количества вакансий</figcaption>
+        <section class="demand_block">
+            <table border="2px">
+                <tr>
+                    <th>Год</th>
+                    {% for year in salary_by_years.keys %}
+                    <td>{{ year }}</td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <th>Средняя зарплата</th>
+                    {% for salary in salary_by_years.values %}
+                    <td>{{ salary }}</td>
+                {% endfor %}
+                </tr>
+            </table>
+            <h2>Динамика уровня зарплат по годам для профессии "Аналитик"</h2>
+            <p><img src="{% static "resources/mean_salary_by_years.png" %}" class="histogram"></p>
+            <figcaption>График уровня зарплат</figcaption>
+        </section>
+        <section class="demand_block">
+            <table border="2px">
+                <tr>
+                    <th>Год</th>
+                    {% for year in vacancies_by_year.keys %}
+                    <td>{{ year }}</td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <th>Количество вакансий</th>
+                    {% for vacancies in vacancies_by_year.values %}
+                    <td>{{ vacancies }}</td>
+                {% endfor %}
+                </tr>
+            </table>
+            <h2>Динамика количества вакансий по годам для профессии "Аналитик"</h2>
+            <p><img src="{% static "resources/vacancies_count_by_years.png" %}" class="histogram"></p>
+            <figcaption>График количества вакансий</figcaption>
+        </section>
     </main>
     <footer></footer>
 </body>

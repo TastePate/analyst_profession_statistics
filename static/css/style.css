@@ -19,3 +19,7 @@
     border-left: 5px solid #33ADFF;
     display: flex;
 }
+
+.histogram {
+    width: 500px;
+}
