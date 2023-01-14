@@ -5,14 +5,38 @@ from django.shortcuts import render
 
 from utils.csv_parsers import Parser
 from multiprocessing import Pool
-from django.conf import settings
-import django
+
+from utils.helper import get_salary_by_years, get_vacancies_by_year, get_vacancies_by_cities, get_salaries_by_city, \
+    get_top_skills_by_years_lazily
 from vacancies.models import Vacancy
 
 
 def index(request):
-    vacancies = Vacancy.objects.all()
-    return render(request, 'main/index.html', {"vacancies": vacancies})
+    return render(request, 'main/index.html')
+
+def demand(request):
+    salary_by_years = get_salary_by_years(Vacancy)
+    vacancies_by_years = get_vacancies_by_year(Vacancy)
+    return render(request, 'main/demand.html', {'salary_by_years': salary_by_years,
+                                                'vacancies_by_year': vacancies_by_years})
+
+def geography(request):
+    vacancies_by_cities = get_vacancies_by_cities(Vacancy)
+    salaries_by_cities = get_salaries_by_city(Vacancy)
+    return render(request, 'main/geography.html', {'vacancies_by_cities': vacancies_by_cities,
+                                                   'salaries_by_cities': salaries_by_cities})
+
+def skills(request):
+    skills_count = get_top_skills_by_years_lazily(Vacancy)
+    return render(request, 'main/skills.html',
+                  {'years': list(map(lambda i: [str(i), f"resources/top_skills_by_{i}_year.png", skills_count[i-2015]],
+                                     range(2015, 2023)))})
+
+def main(request):
+    return render(request, 'main/main.html')
+
+def last_vacancies(request):
+    return render(request, 'main/last_vacancies.html')
 
 
 def create(request):
