@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import include
 
+import vacancies.views
 from vacancies import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('upload/', views.import_data)
+    path('', include('vacancies.urls'))
 ]
