@@ -47,6 +47,9 @@ if __name__ == '__main__':
         fig.set_figheight(6)
 
         plt.xticks(x)
+        plt.xlabel("Years")
+        plt.ylabel("Salary")
+        plt.title("Mean salary by years")
         plt.savefig('C:\\Users\\TastePate\\PycharmProjects\\Database\\VacanciesProject\\templates\\main\\resources\\mean_salary_by_years')
         plt.show()
 

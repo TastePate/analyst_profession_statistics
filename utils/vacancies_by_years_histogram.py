@@ -29,12 +29,13 @@ if __name__ == '__main__':
         fig.set_figwidth(12)
         fig.set_figheight(6)
 
+        plt.xlabel("Years")
+        plt.ylabel("Vacancies")
+        plt.title("Vacancies count by years")
+
         plt.xticks(x)
         plt.savefig('C:\\Users\\TastePate\\PycharmProjects\\Database\\VacanciesProject\\templates\\main\\resources\\vacancies_count_by_years.png')
         plt.show()
-
-        print(years_to_histogram)
-        print(vacancies_count_by_years)
 
         cursor.close()
 
